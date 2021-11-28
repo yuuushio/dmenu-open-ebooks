@@ -1,7 +1,7 @@
 # Description
 Cool script that allows you to select and open an ebook via dmenu, given the directory that contains these desired books/pdfs.
 - Lists all the pdf/epub files in the specified directory via dmenu
-- The selected file will be passed into zathura for viewing
+- The selected file will be opened in zathura for viewing
 
 # Dependencies
 - [Zathura](https://wiki.archlinux.org/title/Zathura) (with pdf support) : Document viewer.
