@@ -3,7 +3,6 @@ import sys, getopt
 
 custom_path = "~/Books/"
 
-
 def main(args):
     global custom_path
     
@@ -51,7 +50,6 @@ def main(args):
     except IOError:
         print("Invalid file/directory. Exiting.")
         raise SystemExit
-
 
 if __name__ == "__main__":
     main(sys.argv[1:]) # since [0] is the program name itself
