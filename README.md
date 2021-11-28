@@ -5,6 +5,7 @@ Cool script that allows you to select and open an ebook via dmenu, given the dir
 
 # Dependencies
 - [Zathura](https://wiki.archlinux.org/title/Zathura) (with pdf support) : Document viewer.
+- [dmenu](https://tools.suckless.org/dmenu/)
 
 # Usage
 ```bash
