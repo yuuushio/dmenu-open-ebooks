@@ -57,6 +57,4 @@ if __name__ == "__main__":
     main(sys.argv[1:]) # since [0] is the program name itself
 
 # TODO
-# - be able to specify directory as command line arguments
-# - only list .pdf and .epub files
 # - number each entry
