@@ -3,9 +3,10 @@ import sys, getopt
 
 custom_path = "~/Books/"
 
+
 def main(args):
     global custom_path
-    
+    dir_path = "" 
     # validate arguments
     # use custom_path (~/Books) if no directory supplied
     if len(args)>=1:
@@ -14,12 +15,14 @@ def main(args):
         elif len(args) == 1 and args[0] == 'd':
             dir_path = custom_path
         else:
-            AssertionError("Invalid argumnets, using default path of '~/Books/'")
+            raise Exception("Invalid arguments.")
+            raise SystemExit
     else:
         dir_path = custom_path
         
-    # add '/' if it's omitted in the command line argument
+    # add '/' if it's ommited in the command line argument
     # eg: if supplied something like ~/Books
+    print(dir_path)
     if dir_path[-1] != '/':
         dir_path += '/'
     
@@ -38,21 +41,35 @@ def main(args):
                 book_list += f + "\n"
 
         # pipe the string containing book names into dmenu
-        # dmenu then displays this as a list of books which the user can select from
+        # dmenu then displays this list of books which the user can select from
         # store the book (string) that was selected from dmenu
-        selected_book = subprocess.Popen([f"printf '%s' '{book_list}' | dmenu -l {len(book_list.splitlines())} -i"],\
+        selected_option= subprocess.Popen([f"printf '%s' '{book_list}' | dmenu -l {len(book_list.splitlines())} -i"],\
             shell=True, stdout=subprocess.PIPE)\
-                .communicate()[0].decode('utf-8').splitlines()[0]
+                .communicate()[0].decode('utf-8')
+        
+        selected_book = ""
+        if selected_option != "":
+            selected_book = splitlines()[0]
 
         # pass that selected string into zathura - thereby effectively opening the book for viewing
-        zat = subprocess.Popen([f"zathura {dir_path}'{selected_book}'"], shell=True, stdout=subprocess.PIPE)
+        if selected_book != "":
+            zat = subprocess.Popen([f"zathura {dir_path}'{selected_book}'"], shell=True, stdout=subprocess.PIPE)
+        else:
+            print("No books found. Exiting.")
+            raise SystemExit
         
     except IOError:
         print("Invalid file/directory. Exiting.")
         raise SystemExit
 
+
 if __name__ == "__main__":
-    main(sys.argv[1:]) # since [0] is the program name itself
+    if len(sys.argv) > 1 and (sys.argv[1] != "-p" or sys.argv[1] != "-d"):
+        print("Invalid arguments. Exiting.")
+    else:
+        main(sys.argv[1:]) # since [0] is the program name itself
 
 # TODO
+# - be able to specify directory as command line arguments
+# - only list .pdf and .epub files
 # - number each entry
