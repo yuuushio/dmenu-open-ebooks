@@ -48,7 +48,7 @@ def main(args):
         # in the case of no pdf files detected
         selected_book = ""
         if selected_option != "":
-            selected_book = splitlines()[0]
+            selected_book = selected_option.splitlines()[0]
 
         # if non-empty, pass that selected string into zathura - thereby effectively opening the book for viewing
         if selected_book != "":
