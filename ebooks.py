@@ -3,7 +3,6 @@ import sys, getopt
 
 custom_path = "~/Books/"
 
-
 def main(args):
     global custom_path
     dir_path = "" 
@@ -21,8 +20,7 @@ def main(args):
         dir_path = custom_path
         
     # add '/' if it's ommited in the command line argument
-    # eg: if supplied something like ~/Books
-    print(dir_path)
+    # eg: if supplied something like ~/Books 
     if dir_path[-1] != '/':
         dir_path += '/'
     
@@ -47,11 +45,12 @@ def main(args):
             shell=True, stdout=subprocess.PIPE)\
                 .communicate()[0].decode('utf-8')
         
+        # in the case of no pdf files detected
         selected_book = ""
         if selected_option != "":
             selected_book = splitlines()[0]
 
-        # pass that selected string into zathura - thereby effectively opening the book for viewing
+        # if non-empty, pass that selected string into zathura - thereby effectively opening the book for viewing
         if selected_book != "":
             zat = subprocess.Popen([f"zathura {dir_path}'{selected_book}'"], shell=True, stdout=subprocess.PIPE)
         else:
@@ -64,12 +63,11 @@ def main(args):
 
 
 if __name__ == "__main__":
+    # if arguments are supplied, check if theyre valid
     if len(sys.argv) > 1 and (sys.argv[1] != "-p" or sys.argv[1] != "-d"):
         print("Invalid arguments. Exiting.")
     else:
         main(sys.argv[1:]) # since [0] is the program name itself
 
 # TODO
-# - be able to specify directory as command line arguments
-# - only list .pdf and .epub files
 # - number each entry
