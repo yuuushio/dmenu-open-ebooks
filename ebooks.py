@@ -38,7 +38,7 @@ def main(args):
                 book_list += f + "\n"
 
         # pipe the string containing book names into dmenu
-        # dmenu then displays this list of books which the user can select from
+        # dmenu then displays this as a list of books which the user can select from
         # store the book (string) that was selected from dmenu
         selected_book = subprocess.Popen([f"printf '%s' '{book_list}' | dmenu -l {len(book_list.splitlines())} -i"],\
             shell=True, stdout=subprocess.PIPE)\
