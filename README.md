@@ -1,13 +1,13 @@
-# Description
-Cool script that allows you to select and open an ebook via dmenu, given the directory that contains these desired books/pdfs.
+# Dmenu-open-ebooks
+Open your ebooks from dmenu; cool script that displays your list of books, contained inside a *specified* directory, in dmenu, where you can select the desired one and open it for viewing.
 - Lists all the pdf/epub files in the specified directory via dmenu
-- The selected file will be opened in zathura for viewing
+- The selected file will be opened in zathura
 
-# Dependencies
+## Requirements
 - [Zathura](https://wiki.archlinux.org/title/Zathura) (with pdf support) : Document viewer.
 - [dmenu](https://tools.suckless.org/dmenu/)
 
-# Usage
+## Usage
 ```bash
 python ebooks.py -p <path/to/directory>
 ```
@@ -20,4 +20,4 @@ python ebooks.py
 
 If your DE/WM allows you to do so, better use would be to bind this program to a key.
 
-# Demo
+## Demo
