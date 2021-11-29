@@ -18,7 +18,7 @@ def main(args):
     else:
         dir_path = custom_path
         
-    # add '/' if it's ommited in the command line argument
+    # add '/' if it's omitted in the command line argument
     # eg: if supplied something like ~/Books
     if dir_path[-1] != '/':
         dir_path += '/'
